@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "570810657847",
+    "project_id": "socialapp-33307",
+    "storage_bucket": "socialapp-33307.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570810657847:android:638832caa5ed103197a3b2",
+        "android_client_info": {
+          "package_name": "com.magician.socialapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570810657847-7ugdtflhq10uujugrj9g2noop8hgpf2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKHg9LdFgHG97T3S9DYsOt24RY8SDlscc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570810657847-7ugdtflhq10uujugrj9g2noop8hgpf2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
