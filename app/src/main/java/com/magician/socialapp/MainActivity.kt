@@ -1,12 +1,15 @@
 package com.magician.socialapp
 
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.ktx.auth
@@ -75,12 +78,32 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var itemView = item.itemId
         when (itemView) {
-            R.id.log_out -> logout()
+            R.id.log_out -> alertDialog()
         }
         return false
     }
 
+    private fun alertDialog() {
+        //Log.d("Logout", "AlertDialog Clicked")
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage("Do you want to sign out?")
+            .setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+                logout()
+            })
+            .setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i -> }
+                //Do Nothing
+            )
+
+        dialogBuilder.create()
+        dialogBuilder.show()
+
+        //Firebase.auth.signOut()
+        //val intent = Intent(this, SignInActivity::class.java)
+        //startActivity(intent)
+    }
+
     private fun logout() {
+        //Log.d("Logout", "Logout Clicked")
         Firebase.auth.signOut()
         val intent = Intent(this, SignInActivity::class.java)
         startActivity(intent)
