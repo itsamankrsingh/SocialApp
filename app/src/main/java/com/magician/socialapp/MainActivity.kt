@@ -4,9 +4,14 @@ package com.magician.socialapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
+import com.google.firebase.ktx.Firebase
 import com.magician.socialapp.daos.PostDao
 import com.magician.socialapp.models.Post
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,6 +25,9 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(activity_main_toolbar)
+
         postDao = PostDao()
 
         fab.setOnClickListener {
@@ -56,5 +64,25 @@ class MainActivity : AppCompatActivity(), IPostAdapter {
 
     override fun onLikeCLicked(postId: String) {
         postDao.updateLikes(postId)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.logout_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var itemView = item.itemId
+        when (itemView) {
+            R.id.log_out -> logout()
+        }
+        return false
+    }
+
+    private fun logout() {
+        Firebase.auth.signOut()
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
     }
 }

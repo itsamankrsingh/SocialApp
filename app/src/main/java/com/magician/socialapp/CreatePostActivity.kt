@@ -12,6 +12,9 @@ class CreatePostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_post)
+
+        setSupportActionBar(create_post_toolbar)
+
         postDao = PostDao()
         postButton.setOnClickListener {
             val input = postInput.text.toString().trim()
